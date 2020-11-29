@@ -13,6 +13,14 @@ public class ProductoBean {
     public ProductoBean() {
     }
 
+    public ProductoBean(String nombre, int exitencia, double precio, String descripcion, String codigoBarra) {
+        this.nombre = nombre;
+        this.exitencia = exitencia;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.codigoBarra = codigoBarra;
+    }
+
     public ProductoBean(int codigo, String nombre, int idCategoria, int idMarca, int exitencia, double precio, String descripcion, String codigoBarra) {
         this.codigo = codigo;
         this.nombre = nombre;

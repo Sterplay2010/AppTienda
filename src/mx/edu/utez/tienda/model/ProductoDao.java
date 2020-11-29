@@ -27,7 +27,7 @@ public class ProductoDao extends Conexion {
     }
 
     public boolean eliminarProducto(int idProducto) {
-        try (PreparedStatement pst = crearConexion().prepareStatement("DELETE FROM producto WHERE idProducto = '" + idProducto + "'")) {
+        try (PreparedStatement pst = crearConexion().prepareStatement("DELETE FROM producto WHERE idProducto = '" + idProducto + "';")) {
             if (pst.executeUpdate() == 1) {
                 return true;
             }
@@ -57,16 +57,16 @@ public class ProductoDao extends Conexion {
         return false;
     }
     public Queue<ProductoBean> consultarProductos(){
-        Queue<ProductoBean> cola = new LinkedList<>();
-        try(PreparedStatement pst = crearConexion().prepareStatement("SELECT * FROM producto")){
+        Queue<ProductoBean> colaProductos = new LinkedList<>();
+        try(PreparedStatement pst = crearConexion().prepareStatement("SELECT * FROM producto;")){
             ResultSet rs=pst.executeQuery();
             while(rs.next()){
-                cola.add(new ProductoBean(rs.getInt("codigo"), rs.getString("nombre"), rs.getInt("idCategoria"), rs.getInt("idMarca"), rs.getInt("existencia"), rs.getDouble("precio"),rs.getString("descripcion"), rs.getString("codigoBarra")));
+                colaProductos.add(new ProductoBean(rs.getInt("codigo"), rs.getString("nombre"), rs.getInt("idCategoria"), rs.getInt("idMarca"), rs.getInt("existencia"), rs.getDouble("precio"),rs.getString("descripcion"), rs.getString("codigoBarra")));
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return  cola;
+        return  colaProductos;
     }
 
     public static void main(String[] args) {
@@ -80,8 +80,10 @@ public class ProductoDao extends Conexion {
             System.out.println(var.getExitencia());
             System.out.println(var.getPrecio());
             System.out.println(var.getDescripcion());
-            System.out.println(var.getCodigo());
+            System.out.println(var.getCodigoBarra());
             System.out.println("----------------------------");
         }
+        //insertar producto nuevo (FUNCIONA)
+        //System.out.println(new ProductoDao().insertarProducto(new ProductoBean("lavadora",20,14000,"Lavadora Pequeña","OOKAD"),"linea blanca", "Sharp") );
     }
 }
