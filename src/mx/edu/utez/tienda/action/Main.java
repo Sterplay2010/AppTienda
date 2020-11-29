@@ -19,25 +19,30 @@ public class Main {
                     "                   |_(_)(_||| |                    \n" +
                     "                         _|                        ");
             System.out.println("-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --");
-
+            System.out.println("");
             System.out.print("Usuario: ");
             usuario = in.next();
             System.out.print("Contraseña: ");
             contrasenia = in.next();
+            System.out.println("\n");
             if (new MainAction().iniciarSesion(usuario, contrasenia)) { //validamos la sesión
                 while (!salir2) {
-                    new Operacion().salto();
+                    System.out.println("");
                     System.out.println("                    _                                            \n" +
                             "__ __ __ __ __ __  |_)o _ ._     _ ._ o _| _   __ __ __ __ __ __ \n" +
                             "                   |_)|(/_| |\\/ (/_| ||(_|(_)");
                     System.out.println("----------------------------------------------------------------");
+                    System.out.println("");
                     System.out.println("1) Operaciones con Categorias.");
+                    System.out.println("");
                     System.out.println("2) Operaciones con Marcas.");
+                    System.out.println("");
                     System.out.println("3) Operaciones con Productos.");
+                    System.out.println("");
                     System.out.println("4) Salir.");
                     System.out.print("opción: ");
                     opcion = in.nextInt();
-                    new Operacion().salto();
+                    System.out.println("");
                     switch (opcion) {
                         case 1:
                             new Operacion().menuCategorias();

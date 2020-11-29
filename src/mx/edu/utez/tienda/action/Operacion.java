@@ -14,7 +14,7 @@ public class Operacion {
 
     public void menuCategorias() {
         in.useDelimiter("\n");
-        String nombre, descripcion = "", bandera,aux;
+        String nombre, descripcion = "", bandera, aux;
         boolean salir = false;
         while (!salir) {
             int opcion = 0;
@@ -22,10 +22,15 @@ public class Operacion {
                     "                    |  |(/_| ||_|                   ");
             System.out.println("----------------------------------------------------");
             System.out.println("1) Registrar Categoria Nueva.");
+            System.out.println("");
             System.out.println("2) Eliminar Una Categoria");
+            System.out.println("");
             System.out.println("3) Consultar Todas Las Categorias.");
+            System.out.println("");
             System.out.println("4) Modificar Categoria Existente.");
+            System.out.println("");
             System.out.println("5) Regresar.");
+            System.out.println("");
             System.out.print("opción: ");
             opcion = in.nextInt();
             switch (opcion) {
@@ -35,7 +40,7 @@ public class Operacion {
                         System.out.println("                 Registrar Categoria                ");
                         System.out.println("----------------------------------------------------");
                         System.out.print("Ingresa el nombre de la categoria nueva: ");
-                        nombre = in.next();
+                        nombre = in.next().toLowerCase();
                         if (new MainAction().validarNombreCategoria(nombre)) {
                             System.out.println("Esta categoría ya está registrada, intente nuevamente con un nombre distinto.");
                         } else {
@@ -43,12 +48,14 @@ public class Operacion {
                             bandera = in.next();
                             if (bandera.equals("S") || bandera.equals("s")) {
                                 System.out.print("Descripcion: ");
-                                descripcion = in.next();
+                                descripcion = in.next().toLowerCase();
                                 if (new MainAction().agregarCategoria(nombre, descripcion)) {
                                     System.out.println("Categoría registrada con éxito.");
                                 }
                             } else {
-                                System.out.println(nombre + " " + descripcion);
+                                if (new MainAction().agregarCategoria(nombre, descripcion)) {
+                                    System.out.println("Categoría registrada con éxito.");
+                                }
                             }
                         }
                     } catch (Exception e) {
@@ -62,17 +69,19 @@ public class Operacion {
                         System.out.println("                 Eliminar Categoria                 ");
                         System.out.println("----------------------------------------------------");
                         System.out.println("                Categorias Existentes               ");
-                        for (CategoriaBean var: categorias){
-                            System.out.println("Nombre: "+var.getNombre()+"  Descripcion: "+var.getDescripcion());
+                        System.out.println("");
+                        for (CategoriaBean var : categorias) {
+                            System.out.println("Nombre: "+ var.getNombre() + "            Descripcion: " + var.getDescripcion());
                         }
+                        System.out.println("");
                         System.out.print("Ingresa el nombre de la Categoria: ");
-                        nombre = in.next();
-                        if(new MainAction().eliminarCategoria(nombre)){
+                        nombre = in.next().toLowerCase();
+                        if (new MainAction().eliminarCategoria(nombre)) {
                             System.out.println("Categoría eliminada con éxito.");
-                        }else{
+                        } else {
                             System.out.println("Hubo un error al eliminar, intente nuevamente.");
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     categorias.clear();
@@ -83,37 +92,45 @@ public class Operacion {
                     System.out.println("                 Consultar Categorias               ");
                     System.out.println("----------------------------------------------------");
                     System.out.println("                Categorias Existentes               ");
-                    for (CategoriaBean var: categorias){
-                        System.out.println("Nombre: "+var.getNombre()+"  Descripcion: "+var.getDescripcion());
+                    for (CategoriaBean var : categorias) {
+                        System.out.println("Nombre: " + var.getNombre() + "  Descripcion: " + var.getDescripcion());
                     }
                     categorias.clear();
                     break;
                 case 4:
                     categorias = new CategoriaDao().consultarCategorias();
-                    System.out.println("----------------------------------------------------");
-                    System.out.println("                 Modificar Categoria                ");
-                    System.out.println("----------------------------------------------------");
-                    for (CategoriaBean var: categorias){
-                        System.out.println("Nombre: "+var.getNombre()+"  Descripcion: "+var.getDescripcion());
-                    }
-                    System.out.print("Ingresa el nombre de la categoria existente: ");
-                    nombre = in.next();
-                    System.out.println("Ingresa el nuevo nombre de la categoria: ");
-                    aux=in.next();
-                    if (new MainAction().validarNombreCategoria(aux)) {
-                        System.out.println("Esta categoría ya está registrada, intente nuevamente con un nombre distinto.");
-                    } else {
-                        System.out.println("Desea agregar una descripción? S/N");
-                        bandera = in.next();
-                        if (bandera.equals("S") || bandera.equals("s")) {
-                            System.out.print("Descripcion: ");
-                            descripcion = in.next();
-                            if (new MainAction().modificarCategoria(aux, descripcion, nombre)) {
-                                System.out.println("Categoría Actualizada con éxito.");
-                            }
-                        } else {
-                            System.out.println(nombre + " " + descripcion);
+                    try {
+                        System.out.println("----------------------------------------------------");
+                        System.out.println("                 Modificar Categoria                ");
+                        System.out.println("----------------------------------------------------");
+                        System.out.println("");
+                        for (CategoriaBean var : categorias) {
+                            System.out.println("Nombre: " + var.getNombre() + "            Descripcion: " + var.getDescripcion());
                         }
+                        System.out.println("");
+                        System.out.print("Ingresa el nombre de la categoria existente: ");
+                        nombre = in.next().toLowerCase();
+                        System.out.println("Ingresa el nuevo nombre de la categoria: ");
+                        aux = in.next().toLowerCase();
+                        if (new MainAction().validarNombreCategoria(aux)) {
+                            System.out.println("Esta categoría ya está registrada, intente nuevamente con un nombre distinto.");
+                        } else {
+                            System.out.println("Desea agregar una descripción? S/N");
+                            bandera = in.next().toLowerCase();
+                            if (bandera.equals("S") || bandera.equals("s")) {
+                                System.out.print("Descripcion: ");
+                                descripcion = in.next();
+                                if (new MainAction().modificarCategoria(aux, descripcion, nombre)) {
+                                    System.out.println("Categoría Actualizada con éxito.");
+                                }
+                            } else {
+                                if (new MainAction().modificarCategoria(aux, descripcion, nombre)) {
+                                    System.out.println("Categoría Actualizada con éxito.");
+                                }
+                            }
+                        }
+                    }catch (Exception e){
+                        System.out.println("");
                     }
                     categorias.clear();
                     break;
@@ -134,10 +151,15 @@ public class Operacion {
                     "                    |  |(/_| ||_|                   ");
             System.out.println("----------------------------------------------------");
             System.out.println("1) Registrar Marca Nueva.");
+            System.out.println("");
             System.out.println("2) Eliminar Una Marca");
+            System.out.println("");
             System.out.println("3) Consultar Todas Las Marcas.");
+            System.out.println("");
             System.out.println("4) Modificar Marca Existente.");
+            System.out.println("");
             System.out.println("5) Regresar.");
+            System.out.println("");
             System.out.print("opción: ");
             opcion = in.nextInt();
             switch (opcion) {
@@ -166,10 +188,15 @@ public class Operacion {
                     "                    |  |(/_| ||_|                   ");
             System.out.println("----------------------------------------------------");
             System.out.println("1) Registrar Producto Nuevo.");
+            System.out.println("");
             System.out.println("2) Eliminar Un Producto");
+            System.out.println("");
             System.out.println("3) Consultar Todos Los Productos.");
+            System.out.println("");
             System.out.println("4) Modificar Producto Existente.");
+            System.out.println("");
             System.out.println("5) Regresar.");
+            System.out.println("");
             System.out.print("opción: ");
             opcion = in.nextInt();
             switch (opcion) {
@@ -190,7 +217,4 @@ public class Operacion {
         }
     }
 
-    public void salto() {
-        System.out.println("\n\n");//saltos de linea
-    }
 }

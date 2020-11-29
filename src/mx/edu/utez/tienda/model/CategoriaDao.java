@@ -57,5 +57,5 @@ public class CategoriaDao extends Conexion {
             e.printStackTrace();
         }
         return colaCategorias;
-    }
+    }s
 }
