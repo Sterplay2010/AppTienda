@@ -22,8 +22,8 @@ public class CategoriaDao extends Conexion {
         return false;
     }
 
-    public boolean eliminarCategoria(int idCategoria) {
-        try (PreparedStatement pst = crearConexion().prepareStatement("DELETE * FROM categoria WHERE idCategoria = '" + idCategoria + "';")) {
+    public boolean eliminarCategoria(String nombre) {
+        try (PreparedStatement pst = crearConexion().prepareStatement("DELETE FROM categoria WHERE nombre = '" + nombre + "';")) {
             if (pst.executeUpdate() == 1) {
                 return true;
             }
@@ -33,8 +33,8 @@ public class CategoriaDao extends Conexion {
         return false;
     }
 
-    public boolean modificarCategoria(CategoriaBean bean) {
-        try (PreparedStatement pst = crearConexion().prepareStatement("UPDATE categoria SET (nombre,descripcion) VALUES(?,?);")) {
+    public boolean modificarCategoria(CategoriaBean bean, String nombre) {
+        try (PreparedStatement pst = crearConexion().prepareStatement("UPDATE categoria SET nombre =?, descripcion=? WHERE idCategoria = (select idCategoria from categoria where nombre ='"+nombre+"');")) {
             pst.setString(1, bean.getNombre());
             pst.setString(2, bean.getDescripcion());
             if (pst.executeUpdate() == 1) {
@@ -48,7 +48,7 @@ public class CategoriaDao extends Conexion {
 
     public Queue<CategoriaBean> consultarCategorias() {
         Queue<CategoriaBean> colaCategorias = new LinkedList<>();
-        try (PreparedStatement pst = crearConexion().prepareStatement("SELECT * FROM categoria;")) {
+        try (PreparedStatement pst = crearConexion().prepareStatement("SELECT * FROM categoria ORDER BY nombre, descripcion ASC")) {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 colaCategorias.add(new CategoriaBean(rs.getString("nombre"), rs.getString("descripcion")));

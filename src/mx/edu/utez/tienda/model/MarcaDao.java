@@ -43,7 +43,7 @@ public class MarcaDao extends Conexion {
         }
         return false;
     }
-    public Queue<MarcaBean> consultarMarca(){
+    public Queue<MarcaBean> consultarMarcas(){
         Queue<MarcaBean> colaMarca = new LinkedList<>();
         try(PreparedStatement pst = crearConexion().prepareStatement("SELECT * FROM marca;")) {
             ResultSet rs = pst.executeQuery();
