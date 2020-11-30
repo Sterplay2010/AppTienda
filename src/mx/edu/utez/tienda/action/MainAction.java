@@ -23,16 +23,16 @@ public class MainAction {
         return new LoginDao().sesion(new LoginBean(usuario, contrasenia));//mandamos los datos de consulta
     }
 
-    public boolean agregarCategoria(String nombre, String descripcion){
-        return new CategoriaDao().insertarCategoria(new CategoriaBean(nombre,descripcion));
+    public boolean agregarCategoria(String nombre, String descripcion) {
+        return new CategoriaDao().insertarCategoria(new CategoriaBean(nombre, descripcion));
     }
 
-    public boolean eliminarCategoria(String nombre){
+    public boolean eliminarCategoria(String nombre) {
         return new CategoriaDao().eliminarCategoria(nombre);
     }
 
-    public boolean modificarCategoria(String aux, String descripcion, String nombre){
-        return new CategoriaDao().modificarCategoria(new CategoriaBean(aux,descripcion), nombre);
+    public boolean modificarCategoria(String aux, String descripcion, String nombre) {
+        return new CategoriaDao().modificarCategoria(new CategoriaBean(aux, descripcion), nombre);
     }
 
     public boolean validarNombreCategoria(String nombre) {
@@ -45,6 +45,18 @@ public class MainAction {
         return false;
     }
 
+    public boolean agregarMarca(String nombre, String descripcion) {
+        return new MarcaDao().insertarMarca(new MarcaBean(nombre, descripcion));
+    }
+
+    public boolean eliminarMarca(String nombre) {
+        return new MarcaDao().eliminarMarca(nombre);
+    }
+
+    public boolean modificarMarca(String aux,String descripcion, String nombre) {
+        return new MarcaDao().modificarMarca(new MarcaBean(aux, descripcion), nombre);
+    }
+
     public boolean validarNombreMarca(String nombre) {
         colaMarca = new MarcaDao().consultarMarcas();
         for (MarcaBean var : colaMarca) {
@@ -54,7 +66,8 @@ public class MainAction {
         }
         return false;
     }
-    public boolean validarNombreProducto(String nombre){
+
+    public boolean validarNombreProducto(String nombre) {
         colaProducto = new ProductoDao().consultarProductos();
         for (ProductoBean var : colaProducto) {
             if (var.getNombre().equals(nombre)) {

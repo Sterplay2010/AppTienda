@@ -34,7 +34,7 @@ public class CategoriaDao extends Conexion {
     }
 
     public boolean modificarCategoria(CategoriaBean bean, String nombre) {
-        try (PreparedStatement pst = crearConexion().prepareStatement("UPDATE categoria SET nombre =?, descripcion=? WHERE idCategoria = (select idCategoria from categoria where nombre ='"+nombre+"');")) {
+        try (PreparedStatement pst = crearConexion().prepareStatement("UPDATE categoria SET nombre =?, descripcion=? WHERE idCategoria = (SELECT idCategoria FROM categoria WHERE nombre ='"+nombre+"');")) {
             pst.setString(1, bean.getNombre());
             pst.setString(2, bean.getDescripcion());
             if (pst.executeUpdate() == 1) {
@@ -57,5 +57,5 @@ public class CategoriaDao extends Conexion {
             e.printStackTrace();
         }
         return colaCategorias;
-    }s
+    }
 }

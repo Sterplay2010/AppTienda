@@ -40,6 +40,7 @@ public class Main {
                     System.out.println("3) Operaciones con Productos.");
                     System.out.println("");
                     System.out.println("4) Salir.");
+                    System.out.println("");
                     System.out.print("opción: ");
                     opcion = in.nextInt();
                     System.out.println("");
