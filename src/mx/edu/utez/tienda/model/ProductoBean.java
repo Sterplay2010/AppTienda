@@ -3,9 +3,9 @@ package mx.edu.utez.tienda.model;
 public class ProductoBean {
     private int codigo;
     private String nombre;
-    private int idCategoria;
-    private int idMarca;
-    private int exitencia;
+    private String idCategoria;
+    private String idMarca;
+    private int existencia;
     private double precio;
     private String descripcion;
     private String codigoBarra;
@@ -13,34 +13,16 @@ public class ProductoBean {
     public ProductoBean() {
     }
 
-    public ProductoBean(String nombre, int exitencia, double precio, String descripcion, String codigoBarra) {
+    public ProductoBean(String codigoBarra, String nombre, String idCategoria, String idMarca, int existencia, double precio, String descripcion) {
         this.nombre = nombre;
-        this.exitencia = exitencia;
+        this.idCategoria = idCategoria;
+        this.idMarca = idMarca;
+        this.existencia = existencia;
         this.precio = precio;
         this.descripcion = descripcion;
         this.codigoBarra = codigoBarra;
     }
 
-    public ProductoBean(int codigo, String nombre, int idCategoria, int idMarca, int exitencia, double precio, String descripcion, String codigoBarra) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.idCategoria = idCategoria;
-        this.idMarca = idMarca;
-        this.exitencia = exitencia;
-        this.precio = precio;
-        this.descripcion = descripcion;
-        this.codigoBarra = codigoBarra;
-    }
-
-    public ProductoBean(String nombre, int idCategoria, int idMarca, int exitencia, double precio, String descripcion, String codigoBarra) {
-        this.nombre = nombre;
-        this.idCategoria = idCategoria;
-        this.idMarca = idMarca;
-        this.exitencia = exitencia;
-        this.precio = precio;
-        this.descripcion = descripcion;
-        this.codigoBarra=codigoBarra;
-    }
 
     public int getCodigo() {
         return codigo;
@@ -58,28 +40,28 @@ public class ProductoBean {
         this.nombre = nombre;
     }
 
-    public int getIdCategoria() {
+    public String getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
+    public void setIdCategoria(String idCategoria) {
         this.idCategoria = idCategoria;
     }
 
-    public int getIdMarca() {
+    public String getIdMarca() {
         return idMarca;
     }
 
-    public void setIdMarca(int idMarca) {
+    public void setIdMarca(String idMarca) {
         this.idMarca = idMarca;
     }
 
-    public int getExitencia() {
-        return exitencia;
+    public int getExistencia() {
+        return existencia;
     }
 
-    public void setExitencia(int exitencia) {
-        this.exitencia = exitencia;
+    public void setExsitencia(int existencia) {
+        this.existencia = existencia;
     }
 
     public double getPrecio() {

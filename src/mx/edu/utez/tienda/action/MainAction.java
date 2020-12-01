@@ -10,6 +10,7 @@ import mx.edu.utez.tienda.model.MarcaDao;
 import mx.edu.utez.tienda.model.MarcaBean;
 import mx.edu.utez.tienda.model.ProductoDao;
 import mx.edu.utez.tienda.model.ProductoBean;
+import sun.awt.AWTAccessor;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -67,10 +68,22 @@ public class MainAction {
         return false;
     }
 
-    public boolean validarNombreProducto(String nombre) {
+    public boolean agregarProducto(String codigoBarra, String nombre, String nombreCategoria, String nombreMarca,int existencia, double precio,String descripcion){
+        return new ProductoDao().insertarProducto(new ProductoBean(codigoBarra,nombre,nombreCategoria,nombreMarca,existencia,precio,descripcion));
+    }
+
+    public boolean eliminarProducto(String codigoBarra){
+        return new ProductoDao().eliminarProducto(codigoBarra);
+    }
+
+    public boolean modificarProducto(String aux,String nombre, String nombreCategoria, String nombreMarca, int existencia, double precio, String descripion, String codigoBarra){
+        return new ProductoDao().modificarProducto(new ProductoBean(aux,nombre,nombreCategoria,nombreMarca,existencia,precio,descripion),codigoBarra);
+    }
+
+    public boolean validarCodigoBarraProducto(String codigoBarra) {
         colaProducto = new ProductoDao().consultarProductos();
         for (ProductoBean var : colaProducto) {
-            if (var.getNombre().equals(nombre)) {
+            if (var.getCodigoBarra().equals(codigoBarra)) {
                 return true;
             }
         }
