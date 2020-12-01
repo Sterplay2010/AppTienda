@@ -405,7 +405,7 @@ public class Operacion {
                             System.out.println("");
                         }
                         System.out.println("");
-                        System.out.print("Ingresa el nombre de la código del producto: ");
+                        System.out.print("Ingresa el código del producto: ");
                         codigoBarra = in.next().toLowerCase();
                         if (new MainAction().eliminarProducto(codigoBarra)) {
                             System.out.println("Categoría eliminada con éxito.");
@@ -418,6 +418,22 @@ public class Operacion {
                     productos.clear();
                     break;
                 case 3:
+                    productos = new ProductoDao().consultarProductos();
+                    System.out.println("----------------------------------------------------");
+                    System.out.println("                 Consultar Productos                ");
+                    System.out.println("----------------------------------------------------");
+                    System.out.println("                 Productos Existentes               ");
+                    System.out.println("");
+                    for (ProductoBean var : productos) {
+                        System.out.println("Código: " + var.getCodigoBarra());
+                        System.out.println("Nombre: " + var.getNombre());
+                        System.out.println("Existencia: " + var.getExistencia());
+                        System.out.println("Precio: $" + var.getPrecio());
+                        System.out.println("----------------------------------------------------");
+                    }
+                    productos.clear();
+                    break;
+                case 4:
                     marcas = new MarcaDao().consultarMarcas();
                     categorias = new CategoriaDao().consultarCategorias();
                     productos = new ProductoDao().consultarProductos();
@@ -497,22 +513,6 @@ public class Operacion {
                     }
                     marcas.clear();
                     categorias.clear();
-                    productos.clear();
-                    break;
-                case 4:
-                    productos = new ProductoDao().consultarProductos();
-                    System.out.println("----------------------------------------------------");
-                    System.out.println("                 Consultar Productos                ");
-                    System.out.println("----------------------------------------------------");
-                    System.out.println("                 Productos Existentes               ");
-                    System.out.println("");
-                    for (ProductoBean var : productos) {
-                        System.out.println("Código: " + var.getCodigoBarra());
-                        System.out.println("Nombre: " + var.getNombre());
-                        System.out.println("Existencia: " + var.getExistencia());
-                        System.out.println("Precio: $" + var.getPrecio());
-                        System.out.println("----------------------------------------------------");
-                    }
                     productos.clear();
                     break;
                 case 5:
