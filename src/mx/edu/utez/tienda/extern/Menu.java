@@ -1,6 +1,7 @@
-package mx.edu.utez.tienda.action;
+package mx.edu.utez.tienda.extern;
 
-import java.util.InputMismatchException;
+import mx.edu.utez.tienda.action.MainAction;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Menu {

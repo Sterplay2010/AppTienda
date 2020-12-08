@@ -1,11 +1,11 @@
-package mx.edu.utez.tienda.action;
+package mx.edu.utez.tienda.extern;
 
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-import mx.edu.utez.tienda.action.Operacion;
+import mx.edu.utez.tienda.action.MainAction;
 import mx.edu.utez.tienda.model.*;
 
 public class Operacion {
