@@ -21,7 +21,7 @@ public class ProductoDao extends Conexion {
                 return true;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return false;
     }
@@ -50,14 +50,14 @@ public class ProductoDao extends Conexion {
                 return true;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return false;
     }
 
     public Queue<ProductoBean> consultarProductos() {
         Queue<ProductoBean> colaProductos = new LinkedList<>();
-        try (PreparedStatement pst = crearConexion().prepareStatement("SELECT * FROM producto;")) {
+        try (PreparedStatement pst = crearConexion().prepareStatement("SELECT * FROM producto ORDER BY nombre ASC")) {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 colaProductos.add(new ProductoBean(rs.getString("codigoBarra"), rs.getString("nombre"), rs.getString("idCategoria"), rs.getString("idMarca"), rs.getInt("existencia"), rs.getDouble("precio"), rs.getString("descripcion")));

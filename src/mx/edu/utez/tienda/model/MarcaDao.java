@@ -48,7 +48,7 @@ public class MarcaDao extends Conexion {
 
     public Queue<MarcaBean> consultarMarcas() {
         Queue<MarcaBean> colaMarca = new LinkedList<>();
-        try (PreparedStatement pst = crearConexion().prepareStatement("SELECT * FROM marca;")) {
+        try (PreparedStatement pst = crearConexion().prepareStatement("SELECT * FROM marca ORDER BY nombre, descripcion ASC;")) {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 colaMarca.add(new MarcaBean(rs.getString("nombre"), rs.getString("descripcion")));
