@@ -62,7 +62,7 @@ public class Menu {
                                 System.out.println("Opción Inválida");
                         }
                     }catch (InputMismatchException e){
-                        System.out.println("Intenta de nuevo");
+                        System.out.println("Debes ingresar solo números!.");
                         return;
                     }
                 }while(!salir2);

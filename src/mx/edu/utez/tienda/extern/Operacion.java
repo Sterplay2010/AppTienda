@@ -187,7 +187,7 @@ public class Operacion {
                 }
             }
         } catch (InputMismatchException e) {
-            System.out.println("Intenta de nuevo");
+            System.out.println("Debes ingresar solo números!.");
             return;
         }
     }
@@ -324,7 +324,7 @@ public class Operacion {
                                     System.out.println("No puede estar vacio");
                                     return;
                                 }
-                                System.out.println("Ingresa el nuevo nombre de la marca: ");
+                                System.out.print("Ingresa el nuevo nombre de la marca: ");
                                 aux = in.next().toLowerCase();
                                 if (aux.equals(" ") || aux.equals("")) {
                                     System.out.println("No puede estar vacio");
@@ -366,7 +366,7 @@ public class Operacion {
                 }
             }
         } catch (InputMismatchException e) {
-            System.out.println("Intenta de nuevo");
+            System.out.println("Debes ingresar solo números!.");
             return;
         }
     }
@@ -646,7 +646,7 @@ public class Operacion {
                 }
             }
         } catch (InputMismatchException e) {
-            System.out.println("Intenta de nuevo");
+            System.out.println("Debes ingresar solo números!.");
             return;
         }
     }
